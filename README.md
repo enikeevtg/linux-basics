@@ -364,6 +364,8 @@ Linux system installation and updates. Administration basics.
 
 </details>
 
+  ![p7_7_files.png](screenshots/part_7/p7_7_files.png)
+
 7.3. Text files editing and closing without saving the cheanges
 
 <details><summary>VIM</summary>
@@ -372,7 +374,7 @@ Linux system installation and updates. Administration basics.
 
   > press `i` to switch insert mode on
 
-  ![p7_7_vim_no_save.png](screenshots/part_7/p7_7_vim_no_save.png)
+  ![p7_8_vim_no_save.png](screenshots/part_7/p7_8_vim_no_save.png)
 
   > press `Esc` to switch insert mode off
   >
@@ -384,7 +386,7 @@ Linux system installation and updates. Administration basics.
 
       $ nano test_nano.txt
     
-  ![p7_8_nano_no_save.png](screenshots/part_7/p7_8_nano_no_save.png)
+  ![p7_9_nano_no_save.png](screenshots/part_7/p7_9_nano_no_save.png)
 
   > press in sequence: `control+X` -> `n` to close the file without saving the changes
 
@@ -394,7 +396,7 @@ Linux system installation and updates. Administration basics.
 
       $ mcedit test_mcedit.txt
     
-  ![p7_9_mcedit_no_save.png](screenshots/part_7/p7_9_mcedit_no_save.png)
+  ![p7_10_mcedit_no_save.png](screenshots/part_7/p7_10_mcedit_no_save.png)
 
   > press `F10` -> `n` to close the file without saving the changes
   >
@@ -406,11 +408,11 @@ Linux system installation and updates. Administration basics.
 
 <details><summary>VIM</summary>
 
-  ![p7_10_vim_search.png](screenshots/part_7/p7_10_vim_search.png)
+  ![p7_11_vim_search.png](screenshots/part_7/p7_11_vim_search.png)
 
     :s/21 /21_
 
-  ![p7_11_vim_replace.png](screenshots/part_7/p7_11_vim_replace.png)
+  ![p7_12_vim_replace.png](screenshots/part_7/p7_12_vim_replace.png)
 
 </details>
 
@@ -418,7 +420,7 @@ Linux system installation and updates. Administration basics.
 
   > press `control+W` and input pattern to search
 
-  ![p7_12_nano_search.png](screenshots/part_7/p7_12_nano_search.png)
+  ![p7_13_nano_search.png](screenshots/part_7/p7_13_nano_search.png)
 
   > press `control+\` -> input pattern -> `Enter` -> input new text -> `Enter`
   >
@@ -431,7 +433,7 @@ Linux system installation and updates. Administration basics.
   >>
   >> `control+C` to cancel the replace mode
 
-  ![p7_13_nano_replace.png](screenshots/part_7/p7_13_nano_replace.png)
+  ![p7_14_nano_replace.png](screenshots/part_7/p7_14_nano_replace.png)
 
 </details>
 
@@ -450,7 +452,7 @@ Linux system installation and updates. Administration basics.
   >>
   >> `c` or `Esc` to cancel the search mode
 
-  ![p7_14_mcedit_search.png](screenshots/part_7/p7_14_mcedit_search.png)
+  ![p7_15_mcedit_search.png](screenshots/part_7/p7_15_mcedit_search.png)
 
   > press `F4` to switch replace mode on
   >
@@ -465,6 +467,234 @@ Linux system installation and updates. Administration basics.
   >>
   >> `c` or `Esc` to cancel the replace mode
 
-  ![p7_15_mcedit_replace.png](screenshots/part_7/p7_15_mcedit_replace.png)
+  ![p7_16_mcedit_replace.png](screenshots/part_7/p7_16_mcedit_replace.png)
+
+</details>
+
+## Part 8. Installing and basic setup of the **SSHD** service
+
+`-` It's convenient to have access from one computer to another over a network, isn't it? But to make it not only convenient, but also safe, you should use SSH service.
+
+**== Task ==**
+
+##### Install the SSHd service.
+##### Add an auto-start of the service whenever the system boots.
+##### Reset the SSHd service to port 2022.
+##### Show the presence of the sshd process using the ps command. To do this, you need to match the keys to the command.
+- Explain in the report the meaning of the command and each key in it.
+##### Reboot the system.
+- Describe in the report what you have done to complete all five points (you can do this in text or with screenshots).
+- The output of the netstat -tan command should contain \
+  `tcp 0 0.0.0.0:2022 0.0.0.0:* LISTEN` \
+  (if there is no netstat command, it needs to be installed)
+- Add a screenshot of the command output to the report.
+- Explain the meaning of the -tan keys, the value of each output column, the value 0.0.0.0. in the report.
+
+**== Solution ==**
+
+8.1. The SSHd service installing
+
+     $ sudo apt install openssh-server
+
+  ![p8_openssh_install.png](screenshots/part_8/p8_openssh_install.png)
+
+8.2. An auto-start of the service adding
+
+* Status ssh checking
+
+      $ systemctl status ssh
+  
+  ![p8_2_ssh_status.png](screenshots/part_8/p8_2_ssh_status.png)
+
+* Enable ssh
+
+      $ sudo systemctl enable ssh
+  
+  ![p8_3_ssh_enable.png](screenshots/part_8/p8_3_ssh_enable.png)
+
+* Status ssh checking after reboot
+
+      $ reboot
+      ...
+      $ sudo apt install openssh-server
+  
+  ![p8_4_ssh_status_after_reboot.png](screenshots/part_8/p8_4_ssh_status_after_reboot.png)
+
+8.3. The SSHd service to port 2022 resetting
+
+    $ vim /etc/ssh/sshconfig
+
+  ![p8_6_sshconfig_edit.png](screenshots/part_8/p8_6_sshconfig_edit.png)
+
+8.4. Showing the presence of the sshd process using the ps command
+
+<details><summary>man ps</summary>
+  
+  > [DESCRIPTION](http://www.opennet.ru/man.shtml?category=1&russian=5&topic=ps)
+  >
+  > The ps utility shall write information about processes, subject to having the appropriate privileges to obtain information about those processes.
+  >
+  > By default, ps shall select all processes with the same effective user ID as the current user and the same controlling terminal as the invoker.  
+  >
+  > OPTIONS
+  >
+  > The ps utility shall conform to the Base Definitions volume of IEEE Std 1003.1-2001, Section 12.2, Utility Syntax Guidelines.
+  > 
+  > The following options shall be supported:
+  > 
+  > `-a`
+  >
+  > Write information for all processes associated with terminals. Implementations may omit session leaders from this list.
+  >
+  > `-A`
+  >
+  > Write information for all processes.
+  >
+  > `-d`
+  >
+  > Write information for all processes, except session leaders.
+  >
+  > `-e`
+  >
+  > Write information for all processes. (Equivalent to -A.)
+  >
+  > `-f`
+  >
+  > Generate a full listing. (See the STDOUT section for the contents of a full listing.)
+  >
+  > `-g`  grouplist
+  >
+  > Write information for processes whose session leaders are given in grouplist. The application shall ensure that the grouplist is a single argument in the form of a <blank> or comma-separated list.
+  >
+  > `-G`  grouplist
+  >
+  > Write information for processes whose real group ID numbers are given in grouplist. The application shall ensure that the grouplist is a single argument in the form of a <blank> or comma-separated list.
+  >
+  > `-l`
+  >
+  > Generate a long listing. (See STDOUT for the contents of a long listing.)
+  >
+  > `-n`  namelist
+  >
+  > Specify the name of an alternative system namelist file in place of the default. The name of the default file and the > format of a namelist file are unspecified.
+  >
+  > `-o`  format
+  >
+  > Write information according to the format specification given in format. This is fully described in the STDOUT section. Multiple -o options can be specified; the format specification shall be interpreted as the <space>-separated concatenation of all the format option-arguments.
+  >
+  > `-p`  proclist
+  >
+  > Write information for processes whose process ID numbers are given in proclist. The application shall ensure that the proclist is a single argument in the form of a <blank> or comma-separated list.
+  >
+  > `-t`  termlist
+  >
+  > Write information for processes associated with terminals given in termlist. The application shall ensure that the termlist is a single argument in the form of a <blank> or comma-separated list. Terminal identifiers shall be given in an implementation-defined format.  On XSI-conformant systems, they shall be given in one of two forms: the device's filename (for example, tty04) or, if the device's filename starts with tty, just the identifier following the characters tty (for example, "04" ).
+  >
+  > `-u`  userlist
+  >
+  > Write information for processes whose user ID numbers or login names are given in userlist. The application shall > ensure that the userlist is a single argument in the form of a <blank> or comma-separated list. In the listing, the > numerical user ID shall be written unless the -f option is used, in which case the login name shall be written.
+  >
+  > `-U`  userlist
+  >
+  > Write information for processes whose real user ID numbers or login names are given in userlist. The application shall ensure that the userlist is a single argument in the form of a <blank> or comma-separated list.
+  >
+  > With the exception of `-o` format, all of the options shown are used to select processes. If any are specified, the default list shall be ignored and ps shall select the processes represented by the inclusive OR of all the selection-criteria options.
+
+</details>
+
+<details><summary>man ps rus</summary>
+
+  > [Команда `ps`](https://www.ibm.com/docs/ru/aix/7.1?topic=identification-using-ps-command) является очень гибким инструментом для определения работающих в системе программ и оценки используемых ими ресурсов. Она выводит статистику и информацию о состоянии процессов в системе, в том числе ИД процесса или нити, объем выполняемого ввода-вывода и используемый объем ресурсов процессора и памяти.
+  >
+  > [Cписок опций выбора процессов](https://1cloud.ru/help/security/ispolzovanie-komandy-ps-dlya-prosmotra-protsessov-linux) для отображения:
+  >> `-A`, `-e`, `(a)` - выбрать все процессы;
+  >>
+  >> `-a` - выбрать все процессы, кроме фоновых;
+  >>
+  >> `-d`, `(g)` - выбрать все процессы, даже фоновые, кроме процессов сессий;
+  >>
+  >> `-N` - выбрать все процессы кроме указанных;
+  >>
+  >> `-С` - выбирать процессы по имени команды;
+  >>
+  >> `-G` - выбрать процессы по ID группы;
+  >>
+  >> `-p`, `(p)` - выбрать процессы PID;
+  >>
+  >> `--ppid` - выбрать процессы по PID родительского процесса;
+  >>
+  >> `-s` - выбрать процессы по ID сессии;
+  >>
+  >> `-t`, `(t)` - выбрать процессы по tty;
+  >>
+  >> `-u`, `(U)` - выбрать процессы пользователя.
+
+</details>
+
+    $ ps -e | grep sshd
+
+  ![p8_7_ps_command.png](screenshots/part_8/p8_7_ps_command.png)
+
+8.5. The system rebooting
+
+    $ reboot
+    ...
+    $ sudo apt install net-tools
+    $ service ssh restart
+    $ netstat -tan
+
+  ![p8_8_netstat.png](screenshots/part_8/p8_8_netstat.png)
+
+    $ man netstat
+
+<details><summary>man netstat</summary>
+
+  > [netstat](https://linux.die.net/man/8/netstat) - Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
+  > 
+  > SOME OPTIONS:
+  >
+  >> [`--tcp|-t`]
+  >>
+  >> tcp connections output only
+  >>
+  >> `-a`, `--all`
+  >>
+  >> Show both listening and non-listening (for TCP this means established connections) sockets. With the --interfaces o>ption, show interfaces that are not marked
+  >>
+  >> `--numeric`, `-n`
+  >>
+  >> Show numerical addresses instead of trying to determine symbolic host, port or user names.
+  > 
+  > OUTPUT:
+  >
+  >> `Proto`
+  >>
+  >> The protocol (tcp, udp, raw) used by the socket.
+  >>
+  >> `Recv-Q`
+  >> 
+  >> The count of bytes not copied by the user program connected to this socket.
+  >> 
+  >> `Send-Q`
+  >> 
+  >> The count of bytes not acknowledged by the remote host.
+  >> 
+  >> `Local Address`
+  >> 
+  >> Address and port number of the local end of the socket. Unless the --numeric (-n) option is specified, the socket address is resolved to its canonical host name (FQDN), and the port number is translated into the corresponding service name.
+  >> 
+  >> `Foreign Address`
+  >> 
+  >> Address and port number of the remote end of the socket. Analogous to "Local Address."
+  >> 
+  >> `State`
+  >> 
+  >> The state of the socket. Since there are no states in raw mode and usually no states used in UDP, this column may be left blank.
+  >
+  > [The IP address 0.0.0.0](https://serverfault.com/questions/78048/whats-the-difference-between-ip-address-0-0-0-0-and-127-0-0-1) can have very different meanings, depending on where it's used.
+  > - It's not a valid address to be given to an actual network interface, along with any other address in the 0.0.0.0/8 subnet (i.e. any address starting with 0.).
+  > - It can't be used as the source address on any IP packet, unless this happens when a computer still doesn't know its own IP address and it's trying to acquire one (classic example: DHCP).
+  > - If used in a routing table, it identifies the default gateway; a route to 0.0.0.0 is the default one, i.e. the one used when there is not any more specific route available to a destination address.
+  > - `Lastly, when seen in the output of the netstat command (which is what you asked for), it means that a given socket is listening on all the available IP addresses the computer has; when a computer has more than one IP address, a socket can be bound only to a specific address and port pair, or to a port and all addresses; if you see an IP address there, it means that socket is listening only on that port and that specific address; if you see 0.0.0.0, it means it's listening on that port on all addresses of the machine, including the loopback one (127.0.0.1).`
 
 </details>
