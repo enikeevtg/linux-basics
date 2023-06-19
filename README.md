@@ -946,3 +946,66 @@ Linux system installation and updates. Administration basics.
 ![p13_3_ncdu_varlog.png](screenshots/part_13/p13_3_ncdu_varlog.png)
 
 </details>
+
+## Part 14. Working with system logs
+
+**== Task ==**
+
+##### Open for viewing:
+##### 1. /var/log/dmesg
+##### 2. /var/log/syslog
+##### 3. /var/log/auth.log
+- Write the last successful login time, user name and login method in the report.
+- Restart SSHd service.
+- Add a screenshot of the service restart message to the report (search for it in the logs).
+
+**== Solution ==**
+
+<details><summary>logfiles reference</summary>
+
+[Лог файлы Linux по порядку / Хабр](https://habr.com/ru/articles/332502/):
+
+ - /var/log/syslog или /var/log/messages содержит глобальный системный журнал, в котором пишутся сообщения с момента запуска системы, от ядра Linux, различных служб, обнаруженных устройствах, сетевых интерфейсов и много другого.
+ - /var/log/auth.log или /var/log/secure — информация об авторизации пользователей, включая удачные и неудачные попытки входа в систему, а также задействованные механизмы аутентификации.
+ - /var/log/dmesg — драйвера устройств. Одноименной командой можно просмотреть вывод содержимого файла. Размер журнала ограничен, когда файл достигнет своего предела, старые сообщения будут перезаписаны более новыми. Задав ключ --level= можно отфильтровать вывод по критерию значимости.
+
+</details>
+
+14.1. /var/log/dmesg
+
+    $ vim /var/log/dmesg
+
+<details><summary>dmesg</summary>
+
+![p14_1_dmesg.png](screenshots/part_14/p14_1_dmesg.png)
+
+</details>
+
+14.2. /var/log/syslog
+
+    $ vim /var/log/syslog
+
+<details><summary>syslog</summary>
+
+![p14_2_syslog.png](screenshots/part_14/p14_2_syslog.png)
+
+</details>
+
+14.3. /var/log/auth.log
+
+    $ vim /var/log/auth.log
+
+![p14_3_authlog.png](screenshots/part_14/p14_3_authlog.png)
+
+  > login time: `13:02:41`
+  >
+  > user name: `tagir`
+  >
+  > login method: `pam_unix`
+
+14.4 SSHd service restarting
+
+    $ sudo systemctl restart ssh
+    $ vim /var/log/syslog
+
+![p14_4_ssh_restarting_log.png](screenshots/part_14/p14_4_ssh_restarting_log.png)
