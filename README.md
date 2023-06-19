@@ -99,7 +99,8 @@ So oneline command to create a new user is:
 
 3.1. Setting the machine name as user-1
 
-    $ hostnamectl set-hostname user-1
+    $ sudo hostnamectl set-hostname user-1
+    $ hostname
 
   ![p3_set_1_machine_name.png](screenshots/part_3/p3_1_set_machine_name.png)
 
@@ -689,7 +690,6 @@ So oneline command to create a new user is:
     $ reboot
     ...
     $ sudo apt install net-tools
-    $ service ssh restart
     $ netstat -tan
 
   ![p8_8_netstat.png](screenshots/part_8/p8_8_netstat.png)
@@ -1121,8 +1121,4 @@ after task adding
     $ sudo crontab -r   
     $ sudo crontab -l
 
-<details><summary>all tasks removing</summary>
-
   ![p15_5_crontab_removing.png](screenshots/part_15/p15_5_crontab_removing.png)
-
-</details>
