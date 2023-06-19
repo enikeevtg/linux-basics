@@ -41,15 +41,27 @@ Linux system installation and updates. Administration basics.
 
 **== Solution ==**
 
+<details><summary>about -G option of adduser command</summary>
+
+2nd line: Option g is ambiguous (gecos, gid, group):
+
+![p2_0_g_option.png](screenshots/part_2/p2_0_g_option.png)
+
+So oneline command to create a new user is:
+
+    $ sudo adduser --ingroup <groupname> <username>
+
+</details>
+
 2.1. Command to create user
 
-    $ sudo adduser <new_user_name>
+    $ sudo adduser task2_user
 
   ![p2_1_adduser.png](screenshots/part_2/p2_1_adduser.png)
 
 2.2. Command to add new user to `adm` group
 
-    $ sudo usermod -G adm <user_name>
+    $ sudo usermod -G adm task2_user
 
   ![p2_2_usermod.png](screenshots/part_2/p2_2_usermod.png)
 
@@ -58,8 +70,6 @@ Linux system installation and updates. Administration basics.
     $ cat /etc/passwd | grep task2_user
 
   ![p2_3_passwd.png](screenshots/part_2/p2_3_passwd.png)
-
-2.4. Group checking
 
     $ cat /etc/group | grep adm
 
@@ -301,7 +311,7 @@ Linux system installation and updates. Administration basics.
 
   ![p6_1_current_timezone.png](screenshots/part_6/p6_1_current_timezone.png)
 
-6.2. 
+6.2. Time synchronized checking
 
     $ timedatectl show | grep NTPSynchronized
 
@@ -419,9 +429,11 @@ Linux system installation and updates. Administration basics.
 
 <details><summary>VIM</summary>
 
+  > input `/<searching string>`
+
   ![p7_11_vim_search.png](screenshots/part_7/p7_11_vim_search.png)
 
-    :s/21 /21_
+  > input `:s/<pattern>/<replacement>` (`:s/21 /21_`)
 
   ![p7_12_vim_replace.png](screenshots/part_7/p7_12_vim_replace.png)
 
@@ -429,20 +441,20 @@ Linux system installation and updates. Administration basics.
 
 <details><summary>NANO</summary>
 
-  > press `control+W` and input pattern to search
+  > press `control+W` and input searching string
 
   ![p7_13_nano_search.png](screenshots/part_7/p7_13_nano_search.png)
 
-  > press `control+\` -> input pattern -> `Enter` -> input new text -> `Enter`
+  > press `control+\` -> input searching string -> `Enter` -> input replacement string -> `Enter`
   >
   > press:
-  >> `y` to replace current instance
-  >>
-  >> `n` to miss current instance
-  >>
-  >> `a` to replace all matches
-  >>
-  >> `control+C` to cancel the replace mode
+  > + `y` to replace current instance
+  >
+  > + `n` to miss current instance
+  >
+  > + `a` to replace all matches
+  >
+  > + `control+C` to cancel the replace mode
 
   ![p7_14_nano_replace.png](screenshots/part_7/p7_14_nano_replace.png)
 
@@ -452,39 +464,37 @@ Linux system installation and updates. Administration basics.
 
   > press `F7` to switch search mode on
   >
-  > input pattern
+  > input searching string
   >
   > set searching mode
   >
   > press:
-  >> `o` to find first match
-  >>
-  >> `f` to find all matches
-  >>
-  >> `c` or `Esc` to cancel the search mode
+  > + `o` to find first match
+  >
+  > + `f` to find all matches
+  >
+  > + `c` or `Esc` to cancel the search mode
 
   ![p7_15_mcedit_search.png](screenshots/part_7/p7_15_mcedit_search.png)
 
   > press `F4` to switch replace mode on
   >
-  > input search string
+  > input searching string
   >
   > input replacement string
   >
   > select replacement settings
   >
   > press:
-  >> `o` to replace first match
-  >>
-  >> `c` or `Esc` to cancel the replace mode
+  > + `o` to replace first match
+  >
+  > + `c` or `Esc` to cancel the replace mode
 
   ![p7_16_mcedit_replace.png](screenshots/part_7/p7_16_mcedit_replace.png)
 
 </details>
 
 ## Part 8. Installing and basic setup of the **SSHD** service
-
-`-` It's convenient to have access from one computer to another over a network, isn't it? But to make it not only convenient, but also safe, you should use SSH service.
 
 **== Task ==**
 
@@ -561,15 +571,15 @@ Linux system installation and updates. Administration basics.
   > 
   > The following options shall be supported:
   > 
-  > `-a`
+  > + `-a`
   >
   > Write information for all processes associated with terminals. Implementations may omit session leaders from this list.
   >
-  > `-A`
+  > + `-A`
   >
   > Write information for all processes.
   >
-  > `-d`
+  > + `-d`
   >
   > Write information for all processes, except session leaders.
   >
@@ -577,43 +587,43 @@ Linux system installation and updates. Administration basics.
   >
   > Write information for all processes. (Equivalent to -A.)
   >
-  > `-f`
+  > + `-f`
   >
   > Generate a full listing. (See the STDOUT section for the contents of a full listing.)
   >
-  > `-g`  grouplist
+  > + `-g`  grouplist
   >
   > Write information for processes whose session leaders are given in grouplist. The application shall ensure that the grouplist is a single argument in the form of a <blank> or comma-separated list.
   >
-  > `-G`  grouplist
+  > + `-G`  grouplist
   >
   > Write information for processes whose real group ID numbers are given in grouplist. The application shall ensure that the grouplist is a single argument in the form of a <blank> or comma-separated list.
   >
-  > `-l`
+  > + `-l`
   >
   > Generate a long listing. (See STDOUT for the contents of a long listing.)
   >
-  > `-n`  namelist
+  > + `-n`  namelist
   >
   > Specify the name of an alternative system namelist file in place of the default. The name of the default file and the > format of a namelist file are unspecified.
   >
-  > `-o`  format
+  > + `-o`  format
   >
   > Write information according to the format specification given in format. This is fully described in the STDOUT section. Multiple -o options can be specified; the format specification shall be interpreted as the <space>-separated concatenation of all the format option-arguments.
   >
-  > `-p`  proclist
+  > + `-p`  proclist
   >
   > Write information for processes whose process ID numbers are given in proclist. The application shall ensure that the proclist is a single argument in the form of a <blank> or comma-separated list.
   >
-  > `-t`  termlist
+  > + `-t`  termlist
   >
   > Write information for processes associated with terminals given in termlist. The application shall ensure that the termlist is a single argument in the form of a <blank> or comma-separated list. Terminal identifiers shall be given in an implementation-defined format.  On XSI-conformant systems, they shall be given in one of two forms: the device's filename (for example, tty04) or, if the device's filename starts with tty, just the identifier following the characters tty (for example, "04" ).
   >
-  > `-u`  userlist
+  > + `-u`  userlist
   >
   > Write information for processes whose user ID numbers or login names are given in userlist. The application shall > ensure that the userlist is a single argument in the form of a <blank> or comma-separated list. In the listing, the > numerical user ID shall be written unless the -f option is used, in which case the login name shall be written.
   >
-  > `-U`  userlist
+  > + `-U`  userlist
   >
   > Write information for processes whose real user ID numbers or login names are given in userlist. The application shall ensure that the userlist is a single argument in the form of a <blank> or comma-separated list.
   >
@@ -626,27 +636,27 @@ Linux system installation and updates. Administration basics.
   > [Команда `ps`](https://www.ibm.com/docs/ru/aix/7.1?topic=identification-using-ps-command) является очень гибким инструментом для определения работающих в системе программ и оценки используемых ими ресурсов. Она выводит статистику и информацию о состоянии процессов в системе, в том числе ИД процесса или нити, объем выполняемого ввода-вывода и используемый объем ресурсов процессора и памяти.
   >
   > [Cписок опций выбора процессов](https://1cloud.ru/help/security/ispolzovanie-komandy-ps-dlya-prosmotra-protsessov-linux) для отображения:
-  >> `-A`, `-e`, `(a)` - выбрать все процессы;
-  >>
-  >> `-a` - выбрать все процессы, кроме фоновых;
-  >>
-  >> `-d`, `(g)` - выбрать все процессы, даже фоновые, кроме процессов сессий;
-  >>
-  >> `-N` - выбрать все процессы кроме указанных;
-  >>
-  >> `-С` - выбирать процессы по имени команды;
-  >>
-  >> `-G` - выбрать процессы по ID группы;
-  >>
-  >> `-p`, `(p)` - выбрать процессы PID;
-  >>
-  >> `--ppid` - выбрать процессы по PID родительского процесса;
-  >>
-  >> `-s` - выбрать процессы по ID сессии;
-  >>
-  >> `-t`, `(t)` - выбрать процессы по tty;
-  >>
-  >> `-u`, `(U)` - выбрать процессы пользователя.
+  > + `-A`, `-e`, `(a)` - выбрать все процессы;
+  >
+  > + `-a` - выбрать все процессы, кроме фоновых;
+  >
+  > `-d`, `(g)` - выбрать все процессы, даже фоновые, кроме процессов сессий;
+  >
+  > + `-N` - выбрать все процессы кроме указанных;
+  >
+  > + `-С` - выбирать процессы по имени команды;
+  >
+  > + `-G` - выбрать процессы по ID группы;
+  >
+  > + `-p`, `(p)` - выбрать процессы PID;
+  >
+  > + `--ppid` - выбрать процессы по PID родительского процесса;
+  >
+  > + `-s` - выбрать процессы по ID сессии;
+  >
+  > + `-t`, `(t)` - выбрать процессы по tty;
+  >
+  > + `-u`, `(U)` - выбрать процессы пользователя.
 
 </details>
 
@@ -672,33 +682,33 @@ Linux system installation and updates. Administration basics.
   > 
   > SOME OPTIONS:
   >
-  >> [`--tcp|-t`]
-  >>
-  >> tcp connections output only
-  >>
-  >> `-a`, `--all`
-  >>
-  >> Show both listening and non-listening (for TCP this means established connections) sockets. With the --interfaces o>ption, show interfaces that are not marked
-  >>
-  >> `--numeric`, `-n`
-  >>
-  >> Show numerical addresses instead of trying to determine symbolic host, port or user names.
+  > + [`--tcp|-t`]
+  >
+  > tcp connections output only
+  >
+  > + `-a`, `--all`
+  >
+  > Show both listening and non-listening (for TCP this means established connections) sockets. With the --interfaces o>ption, show interfaces that are not marked
+  >
+  > + `--numeric`, `-n`
+  >
+  > Show numerical addresses instead of trying to determine symbolic host, port or user names.
   > 
   > OUTPUT:
   >
-  >> `Proto`
+  >> + `Proto`
   >>
   >> The protocol (tcp, udp, raw) used by the socket.
   >>
-  >> `Recv-Q`
+  >> + `Recv-Q`
   >> 
   >> The count of bytes not copied by the user program connected to this socket.
   >> 
-  >> `Send-Q`
+  >> + `Send-Q`
   >> 
   >> The count of bytes not acknowledged by the remote host.
   >> 
-  >> `Local Address`
+  >> + `Local Address`
   >> 
   >> Address and port number of the local end of the socket. Unless the --numeric (-n) option is specified, the socket address is resolved to its canonical host name (FQDN), and the port number is translated into the corresponding service name.
   >> 
@@ -706,15 +716,15 @@ Linux system installation and updates. Administration basics.
   >> 
   >> Address and port number of the remote end of the socket. Analogous to "Local Address."
   >> 
-  >> `State`
+  >> + `State`
   >> 
   >> The state of the socket. Since there are no states in raw mode and usually no states used in UDP, this column may be left blank.
   >
   > [The IP address 0.0.0.0](https://serverfault.com/questions/78048/whats-the-difference-between-ip-address-0-0-0-0-and-127-0-0-1) can have very different meanings, depending on where it's used.
-  > - It's not a valid address to be given to an actual network interface, along with any other address in the 0.0.0.0/8 subnet (i.e. any address starting with 0.).
-  > - It can't be used as the source address on any IP packet, unless this happens when a computer still doesn't know its own IP address and it's trying to acquire one (classic example: DHCP).
-  > - If used in a routing table, it identifies the default gateway; a route to 0.0.0.0 is the default one, i.e. the one used when there is not any more specific route available to a destination address.
-  > - `Lastly, when seen in the output of the netstat command (which is what you asked for), it means that a given socket is listening on all the available IP addresses the computer has; when a computer has more than one IP address, a socket can be bound only to a specific address and port pair, or to a port and all addresses; if you see an IP address there, it means that socket is listening only on that port and that specific address; if you see 0.0.0.0, it means it's listening on that port on all addresses of the machine, including the loopback one (127.0.0.1).`
+  > + It's not a valid address to be given to an actual network interface, along with any other address in the 0.0.0.0/8 subnet (i.e. any address starting with 0.).
+  > + It can't be used as the source address on any IP packet, unless this happens when a computer still doesn't know its own IP address and it's trying to acquire one (classic example: DHCP).
+  > + If used in a routing table, it identifies the default gateway; a route to 0.0.0.0 is the default one, i.e. the one used when there is not any more specific route available to a destination address.
+  > + `Lastly, when seen in the output of the netstat command (which is what you asked for), it means that a given socket is listening on all the available IP addresses the computer has; when a computer has more than one IP address, a socket can be bound only to a specific address and port pair, or to a port and all addresses; if you see an IP address there, it means that socket is listening only on that port and that specific address; if you see 0.0.0.0, it means it's listening on that port on all addresses of the machine, including the loopback one (127.0.0.1).`
 
 </details>
 
@@ -746,21 +756,21 @@ Linux system installation and updates. Administration basics.
   
 9.2. Output of the top command
 
-  > - uptime: `2 min`
+  > + uptime: `2 min`
   >
-  > - number of authorised users: `1 user`
+  > + number of authorised users: `1 user`
   > 
-  > - total system load: `load average: 0.08, 0.06, 0.02`
+  > + total system load: `load average: 0.08, 0.06, 0.02`
   >
-  > - total number of processes: `106 total`
+  > + total number of processes: `106 total`
   >
-  > - cpu load: `0.0 us, 0.2 sy, 0.0 ni`
+  > + cpu load: `0.0 us, 0.2 sy, 0.0 ni`
   >
-  > - memory load: `163.9 used`
+  > + memory load: `163.9 used`
   >
-  > - pid of the process with the highest memory usage: `632`
+  > + pid of the process with the highest memory usage: `632`
   >
-  > - pid of the process taking the most CPU time: `632`
+  > + pid of the process taking the most CPU time: `632`
 
 <details><summary>open me</summary>
 
@@ -858,15 +868,13 @@ Linux system installation and updates. Administration basics.
 
 11.1. The df command for the root partition running
 
-    $ df /
+    $ df --block-size=KB /
 
-  > - partition size: `51287520`
-  > - space used: `4916008`
-  > - space free: `43733844`
+  > - partition size: `52518421kB`
+  > - space used: `5113705kB`
+  > - space free: `44703744kB`
   > - percentage used: `11%`
-  > - measurement unit: `KiB` (`$ df /` equal to `$ df --block-size K /`)
-  >
-  >   `1 KiB = 2^10 bytes = 1024 bytes`
+  > - measurement unit: `kilobytes`
 
   ![p11_1_df.png](screenshots/part_11/p11_1_df.png)
 
@@ -895,22 +903,47 @@ Linux system installation and updates. Administration basics.
 
 12.1. The size of the /home, /var, /var/log folders output in bytes
 
-    $ sudo du -s --block-size=1 /home /var/log /var
+    $ sudo du -s --block=size=1 /home
+    $ sudo du -s --block=size=1 /var
+    $ sudo du -s --block=size=1 /var/log
 
 ![p12_1_du_home_var_varlog_bytes.png](screenshots/part_12/p12_1_du_home_var_varlog_bytes.png)
 
 12.2. The size of the /home, /var, /var/log folders output in human readable format
 
-    $ sudo du -hs /home /var/log /var
+    $ sudo du -h /home
 
-![p12_2_du_home_var_varlog_human.png](screenshots/part_12/p12_2_du_home_var_varlog_human.png)
+<details><summary>sudo du -h /home</summary>
+
+![p12_2_du_home_human.png](screenshots/part_12/p12_2_du_home_human.png)
+
+</details>
+
+    $ sudo du -h /var
+
+<details><summary>sudo du -h /var</summary>
+
+![p12_3_du_var_human.png](screenshots/part_12/p12_3_du_var_human.png)
+
+</details>    
+
+    $ sudo du -h /var/log
+
+<details><summary>sudo du -h /var/log</summary>
+
+![p12_4_du_varlog_human.png](screenshots/part_12/p12_4_du_varlog_human.png)
+
+</details>  
 
 12.3. The size of all contents in /var/log output
 
-    $ sudo du -h /var/log/*
+    $ sudo du -ha /var/log/*
 
-![p12_3_du_varlog.png](screenshots/part_12/p12_3_du_varlog.png)
+<details><summary>sudo du -ha /var/log/*</summary>
 
+![p12_5_du_varlog.png](screenshots/part_12/p12_5_du_varlog.png)
+
+</details> 
 
 ## Part 13. Installing and using the **ncdu** utility
 
@@ -924,10 +957,13 @@ Linux system installation and updates. Administration basics.
 
 **== Solution ==**
 
+13.1. The ncdu utility installing
+
     $ sudo apt install ncdu
+ 
+13.2. The size of the /home, /var, /var/log folders output
+
     $ ncdu /home
-    $ ncdu /var
-    $ ncdu /var/log
 
 <details><summary>/home</summary>
 
@@ -935,11 +971,15 @@ Linux system installation and updates. Administration basics.
 
 </details>
 
+    $ ncdu /var
+
 <details><summary>/var</summary>
 
 ![p13_2_ncdu_var.png](screenshots/part_13/p13_2_ncdu_var.png)
 
 </details>
+
+    $ ncdu /var/log
 
 <details><summary>/var/log</summary>
 
@@ -1008,4 +1048,61 @@ Linux system installation and updates. Administration basics.
     $ sudo systemctl restart ssh
     $ vim /var/log/syslog
 
-![p14_4_ssh_restarting_log.png](screenshots/part_14/p14_4_ssh_restarting_log.png)
+![p14_4_ssh_restarting_log.png](screenshots/part_1/p14_4_ssh_restarting_log.png)
+
+## Part 15. Using the **CRON** job scheduler
+
+**== Task ==**
+
+##### Using the job scheduler, run the uptime command in every 2 minutes.
+- Find lines in the system logs (at least two within a given time range) about the execution.
+- Display a list of current jobs for CRON.
+- Add screenshots of the execution lines and the list of current tasks to the report.
+
+##### Remove all tasks from the job scheduler.
+- Add a screenshot of the list of current tasks for CRON to the report.
+
+**== Solution ==**
+
+15.1. The uptime command running in every 2 minutes using the job scheduler
+
+    $ sudo crontab -e
+
+<details><summary>syslog</summary>
+
+/var/spool/cron/crontabs/root before
+
+![p15_1_crontab_before.png](screenshots/part_15/p15_1_crontab_before.png)
+
+/var/spool/cron/crontabs/root after adding 
+
+![p15_2_crontab_after.png](screenshots/part_15/p15_2_crontab_after.png)
+
+</details>
+
+15.2. The execution lines in the system logs finding
+
+    $ vim /var/syslog
+
+  ![p15_3_syslog.png](screenshots/part_15/p15_3_syslog.png)
+
+15.3. The list of current jobs for CRON displaying
+
+    $ crontab -l
+
+<details><summary>current jobs</summary>
+
+  ![p15_4_crontab_list.png](screenshots/part_15/p15_4_crontab_list.png)
+
+</details>
+
+15.4 All tasks from the job scheduler removing
+
+    $ sudo crontab -r   
+    $ sudo crontab -l
+
+<details><summary>all tasks removing</summary>
+
+  ![p15_5_crontab_removing.png](screenshots/part_15/p15_5_crontab_removing.png)
+
+</details>
