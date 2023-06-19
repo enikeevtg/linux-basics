@@ -208,21 +208,32 @@ Linux system installation and updates. Administration basics.
 * Sync the package index files from their sources via Internet
 
       $ sudo apt update
-  
-  ![p4_1_update.png](screenshots/part_4/p4_1_update.png)
+
+    <details><summary>open me</summary>
+
+    ![p4_1_update.png](screenshots/part_4/p4_1_update.png)
+
+    </details>
 
 * Installing the newest versions of all installed packages
 
       $ sudo apt upgrade
 
-  ![p4_2_upgrade_process.png](screenshots/part_4/p4_2_upgrade_process.png)
+    <details><summary>open me</summary>
+
+    ![p4_2_upgrade_process.png](screenshots/part_4/p4_2_upgrade_process.png)
+
+    </details>
 
 * Updates checking
 
       $ sudo apt update
 
-  ![p4_3_all_packeges_are_up_to_date.png](screenshots/part_4/p4_3_all_packeges_are_up_to_date.png)
+    <details><summary>open me</summary>
 
+    ![p4_3_all_packeges_are_up_to_date.png](screenshots/part_4/p4_3_all_packeges_are_up_to_date.png)
+
+    </details>
 
 ## Part 5. Using the **sudo** command
 
@@ -496,7 +507,11 @@ Linux system installation and updates. Administration basics.
 
      $ sudo apt install openssh-server
 
+<details><summary>open me</summary>
+
   ![p8_1_openssh_install.png](screenshots/part_8/p8_1_openssh_install.png)
+
+</details>
 
 8.2. An auto-start of the service adding
 
@@ -524,7 +539,11 @@ Linux system installation and updates. Administration basics.
 
     $ vim /etc/ssh/sshconfig
 
+<details><summary>open me</summary>
+
   ![p8_6_sshconfig_edit.png](screenshots/part_8/p8_6_sshconfig_edit.png)
+
+</details>
 
 8.4. Showing the presence of the sshd process using the ps command
 
@@ -743,7 +762,11 @@ Linux system installation and updates. Administration basics.
   >
   > - pid of the process taking the most CPU time: `632`
 
+<details><summary>open me</summary>
+
   ![p9_0_top.png](screenshots/part_9/p9_0_top.png)
+
+</details>
 
 9.3. htop using
 
@@ -858,3 +881,32 @@ Linux system installation and updates. Administration basics.
   > - file system type: `ext4`
 
   ![p11_2_df_th.png](screenshots/part_11/p11_2_df_th.png)
+
+## Part 12. Using the **du** utility
+
+**== Task ==**
+
+##### Run the du command.
+##### Output the size of the /home, /var, /var/log folders (in bytes, in human readable format)
+##### Output the size of all contents in /var/log (not the total, but each nested element using *)
+- Add screenshots with the output of all used commands to the report.
+
+**== Solution ==**
+
+12.1. The size of the /home, /var, /var/log folders output in bytes
+
+    $ sudo du -s --block-size=1 /home /var/log /var
+
+![p12_1_du_home_var_varlog_bytes.png](screenshots/part_12/p12_1_du_home_var_varlog_bytes.png)
+
+12.2. The size of the /home, /var, /var/log folders output in human readable format
+
+    $ sudo du -hs /home /var/log /var
+
+![p12_2_du_home_var_varlog_human.png](screenshots/part_12/p12_2_du_home_var_varlog_human.png)
+
+12.3. The size of all contents in /var/log output
+
+    $ sudo du -h /var/log/*
+
+![p12_3_du_varlog.png](screenshots/part_12/p12_3_du_varlog.png)
