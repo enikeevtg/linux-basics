@@ -41,9 +41,11 @@ Linux system installation and updates. Administration basics.
 
 **== Solution ==**
 
-<details><summary>about -G option of adduser command</summary>
+<details><summary>about -G option for adduser command</summary>
 
 2nd line: Option g is ambiguous (gecos, gid, group):
+
+    $ sudo adduser -G adm task2_user
 
 ![p2_0_g_option.png](screenshots/part_2/p2_0_g_option.png)
 
@@ -103,14 +105,14 @@ So oneline command to create a new user is:
 
   After machine reboot
   
-    $ sudo reboot
+    $ reboot
 
   ![p3_2_after_reset.png](screenshots/part_3/p3_2_after_reset.png)
 
 3.2. Setting the time zone corresponding to current location
 
     $ timedatectl
-    $ timdatectl list-timezones | grep Moscow
+    $ timedatectl list-timezones | grep Moscow
     $ sudo timedatectl set-timezone Europe/Moscow
     $ timedatectl
 
@@ -157,7 +159,7 @@ So oneline command to create a new user is:
 
   > icanhazip.com - the site that returns an ip as a string.
 
-* Defining internal ip address of the gatewey
+* Defining internal ip address of the gatewey, aka default ip address
 
       $ ip route | grep default
     
@@ -168,8 +170,6 @@ So oneline command to create a new user is:
 * Changing ip, gw, dns settings in `/etc/netplan/00-installer-config.yaml`
 
       $ sudo vim /etc/netplan/00-installer-config.yaml
-
-  ![p3_9](screenshots/part_3/p3_9.png)
 
   before:
 
@@ -185,12 +185,12 @@ So oneline command to create a new user is:
 
   ![p3_12_changes_applying.png](screenshots/part_3/p3_12_changes_applying.png)
 
-3.7. Rebooting the virtual machine.
+3.7. Reboot the virtual machine.
 <!-- Making sure that the static network settings (ip, gw, dns) correspond to those set in the previous point. -->
 <!-- - Describe in the report what you have done to complete all seven points (you can do it in text or with screenshots).
 - Successfully ping 1.1.1.1 and ya.ru remote hosts and add a screenshot of the output command to the report. There should be "0% packet loss" phrase in command output. -->
 
-* Rebooting
+* Reboot
 
       $ reboot
 
@@ -219,7 +219,7 @@ So oneline command to create a new user is:
 
       $ sudo apt update
 
-    <details><summary>open me</summary>
+    <details><summary>updating</summary>
 
     ![p4_1_update.png](screenshots/part_4/p4_1_update.png)
 
@@ -229,7 +229,7 @@ So oneline command to create a new user is:
 
       $ sudo apt upgrade
 
-    <details><summary>open me</summary>
+    <details><summary>upgrading</summary>
 
     ![p4_2_upgrade_process.png](screenshots/part_4/p4_2_upgrade_process.png)
 
@@ -239,11 +239,11 @@ So oneline command to create a new user is:
 
       $ sudo apt update
 
-    <details><summary>open me</summary>
+    ![p4_3_all_packages_are_up_to_date.png](screenshots/part_4/p4_3_all_packages_are_up_to_date.png)
 
-    ![p4_3_all_packeges_are_up_to_date.png](screenshots/part_4/p4_3_all_packeges_are_up_to_date.png)
+      $ sudo apt upgrade
 
-    </details>
+    ![p4_4_0_packages.png](screenshots/part_4/p4_4_0_packages.png)
 
 ## Part 5. Using the **sudo** command
 
@@ -268,7 +268,7 @@ So oneline command to create a new user is:
 
 * Adding task2_user to sudo group
 
-      $ sudo ussermod -aG sudo task2_user
+      $ sudo usermod -aG sudo task2_user
 
   ![p5_1_usermod_sudo.png](screenshots/part_5/p5_1_usermod_sudo.png)
 
@@ -358,6 +358,8 @@ So oneline command to create a new user is:
   > press `Esc` to switch insert mode off
   >
   > input `:wq` to close the file and save the changes
+  >
+  > press `Enter`
 
 </details>
 
@@ -385,6 +387,10 @@ So oneline command to create a new user is:
 
 </details>
 
+* The text files creation checking
+
+      $ ls test*
+
   ![p7_7_files.png](screenshots/part_7/p7_7_files.png)
 
 7.3. Text files editing and closing without saving the cheanges
@@ -400,6 +406,8 @@ So oneline command to create a new user is:
   > press `Esc` to switch insert mode off
   >
   > input `:q!` to close the file without saving the changes
+  >
+  > press `Enter`
 
 </details>
 
@@ -429,10 +437,14 @@ So oneline command to create a new user is:
 
 <details><summary>VIM</summary>
 
+  > searching:
+  >
   > input `/<searching string>`
 
   ![p7_11_vim_search.png](screenshots/part_7/p7_11_vim_search.png)
 
+  > replacement:
+  >
   > input `:s/<pattern>/<replacement>` (`:s/21 /21_`)
 
   ![p7_12_vim_replace.png](screenshots/part_7/p7_12_vim_replace.png)
@@ -441,10 +453,14 @@ So oneline command to create a new user is:
 
 <details><summary>NANO</summary>
 
+  > searching:
+  >
   > press `control+W` and input searching string
 
   ![p7_13_nano_search.png](screenshots/part_7/p7_13_nano_search.png)
 
+  > replacement:
+  >
   > press `control+\` -> input searching string -> `Enter` -> input replacement string -> `Enter`
   >
   > press:
@@ -462,6 +478,8 @@ So oneline command to create a new user is:
 
 <details><summary>MCEDIT</summary>
 
+  > searching:
+  >
   > press `F7` to switch search mode on
   >
   > input searching string
@@ -477,6 +495,8 @@ So oneline command to create a new user is:
 
   ![p7_15_mcedit_search.png](screenshots/part_7/p7_15_mcedit_search.png)
 
+  > replacement:
+  >
   > press `F4` to switch replace mode on
   >
   > input searching string
@@ -517,7 +537,7 @@ So oneline command to create a new user is:
 
      $ sudo apt install openssh-server
 
-<details><summary>open me</summary>
+<details><summary>openssh-server installing</summary>
 
   ![p8_1_openssh_install.png](screenshots/part_8/p8_1_openssh_install.png)
 
@@ -525,7 +545,7 @@ So oneline command to create a new user is:
 
 8.2. An auto-start of the service adding
 
-* Status ssh checking
+* ssh status checking
 
       $ systemctl status ssh
   
@@ -537,7 +557,7 @@ So oneline command to create a new user is:
   
   ![p8_3_ssh_enable.png](screenshots/part_8/p8_3_ssh_enable.png)
 
-* Status ssh checking after reboot
+* ssh status checking after reboot
 
       $ reboot
       ...
@@ -547,11 +567,11 @@ So oneline command to create a new user is:
 
 8.3. The SSHd service to port 2022 resetting
 
-    $ vim /etc/ssh/sshconfig
+    $ sudo vim /etc/ssh/sshd_config
 
-<details><summary>open me</summary>
+<details><summary>sshd_config</summary>
 
-  ![p8_6_sshconfig_edit.png](screenshots/part_8/p8_6_sshconfig_edit.png)
+  ![p8_6_sshconfig_edit.png](screenshots/part_8/p8_6_sshd_config_edit.png)
 
 </details>
 
@@ -664,7 +684,7 @@ So oneline command to create a new user is:
 
   ![p8_7_ps_command.png](screenshots/part_8/p8_7_ps_command.png)
 
-8.5. The system rebooting
+8.5. The system reboot
 
     $ reboot
     ...
@@ -754,7 +774,7 @@ So oneline command to create a new user is:
 
     $ sudo apt install htop
   
-9.2. Output of the top command
+9.2. Determining some data from the output of the `top` command
 
   > + uptime: `2 min`
   >
@@ -772,13 +792,13 @@ So oneline command to create a new user is:
   >
   > + pid of the process taking the most CPU time: `632`
 
-<details><summary>open me</summary>
+<details><summary>top</summary>
 
   ![p9_0_top.png](screenshots/part_9/p9_0_top.png)
 
 </details>
 
-9.3. htop using
+9.3. The `htop` command outputs
 
 <details><summary>Sorted by PID</summary>
 
@@ -941,7 +961,7 @@ So oneline command to create a new user is:
 
 <details><summary>sudo du -ha /var/log/*</summary>
 
-![p12_5_du_varlog.png](screenshots/part_12/p12_5_du_varlog.png)
+![p12_5_du_varlog.png](screenshots/part_12/p12_5_du_ha_varlog.png)
 
 </details> 
 
@@ -1037,11 +1057,11 @@ So oneline command to create a new user is:
 
 ![p14_3_authlog.png](screenshots/part_14/p14_3_authlog.png)
 
-  > login time: `13:02:41`
+  > + login time: `13:02:41`
   >
-  > user name: `tagir`
+  > + user name: `tagir`
   >
-  > login method: `pam_unix`
+  > + login method: `pam_unix`
 
 14.4 SSHd service restarting
 
@@ -1068,13 +1088,13 @@ So oneline command to create a new user is:
 
     $ sudo crontab -e
 
-<details><summary>syslog</summary>
+<details><summary>/var/spool/cron/crontabs/root</summary>
 
-/var/spool/cron/crontabs/root before
+before task adding
 
 ![p15_1_crontab_before.png](screenshots/part_15/p15_1_crontab_before.png)
 
-/var/spool/cron/crontabs/root after adding 
+after task adding
 
 ![p15_2_crontab_after.png](screenshots/part_15/p15_2_crontab_after.png)
 
