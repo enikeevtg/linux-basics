@@ -160,7 +160,13 @@ Linux system installation and updates. Administration basics.
       $ sudo vim /etc/netplan/00-installer-config.yaml
 
   ![p3_9](screenshots/part_3/p3_9.png)
+
+  before:
+
   ![p3_10_vim_before.png](screenshots/part_3/p3_10_vim_before.png)
+
+  after:
+
   ![p3_11_vim_after.png](screenshots/part_3/p3_11_vim_after.png)
 
 * Changes checking and applying
@@ -229,9 +235,13 @@ Linux system installation and updates. Administration basics.
 
 **== Solution ==**
 
-5.1.
+5.1. What is `sudo`? Sudoku maybe?
 
-  > sudo - Substitute User and do - 
+  > `sudo` - Substitute User and do - is a command-line utility for Unix and Unix-based operating systems such as Linux and macOS. The utility provides an efficient way to temporarily grant users or user groups privileged access to system resources so that they can run commands that they cannot run under their regular accounts. Users can even be granted permissions to run commands under the root account -- the most powerful account on Unix-like systems. `Sudo` also logs all commands and arguments so that administrators can track the behavior of `sudo` users.
+  >
+  > Назначение утилиты `sudo` — выполнение команды от имени другого пользователя, обычно от root. Смысл выполнения команды от root в том, что у него повышенные права доступа и, применяя `sudo`, обычный пользователь может выполнить те действия, на которые у него недостаточно прав.
+  >
+  > Она позволяет легко контролировать доступ к важным приложениям в системе. По умолчанию, при установке Ubuntu первому пользователю (тому, который создаётся во время установки) предоставляются полные права на использование sudo. Т.е. фактически первый пользователь обладает той же свободой действий, что и root.
 
 5.2. Adding task2_user to sudo group
 
@@ -261,3 +271,200 @@ Linux system installation and updates. Administration basics.
       $ hostname
   
   ![p5_4_1_new_hostname.png](screenshots/part_5/p5_4_1_new_hostname.png)
+
+## Part 6. Installing and configuring the time service
+
+**== Task ==**
+
+##### Set up the automatic time synchronisation service.
+- Output the time of the time zone in which you are currently located.
+- The output of the following command must contain `NTPSynchronized=yes`: \
+  `timedatectl show`
+- Add screenshots of the correct time and command output to the report.
+
+**== Solution ==**
+
+6.1. Current time and timezone output
+
+    $ timedatectl
+
+  ![p6_1_current_timezone.png](screenshots/part_6/p6_1_current_timezone.png)
+
+6.2. 
+
+    $ timedatectl show | grep NTPSynchronized
+
+  ![p6_2_ntpsync.png](screenshots/part_6/p6_2_ntpsync.png)
+
+## Part 7. Installing and using text editors
+
+**== Task ==**
+
+##### Install **VIM** text editor (+ any two others if you like **NANO**, **MCEDIT**, **JOE** etc.)
+
+##### Using each of the three selected editors, create a *test_X.txt* file, where X is the name of the editor in which the file is created. Write your nickname in it, close the file and save the changes.
+- Add screenshots to the report:
+    - Of each editor with the contents of the file before closing.
+- Write down in the report what you have done to exit with the changes saved.
+
+##### Using each of the three selected editors, open the file for editing, edit the file by replacing the nickname with the "21 School 21" string, close the file without saving the changes.
+- Add screenshots to the report:
+    - Of each editor with the contents of the file after editing.
+- Write down in the report what you have done to exit without saving the changes.
+##### Using each of the three selected editors, edit the file again (similar to the previous point) and then master the functions of searching through the contents of a file (a word) and replacing a word with any other one.
+- Add screenshots to the report:
+    - Of each editor with word search results.
+    - Of each editor with commands entered to replace a word with another.
+
+**== Solution ==**
+
+7.1. Text editors installing
+
+    $ sudo apt install vim
+    $ sudo apt install nano
+    $ sudo apt install mcedit
+
+7.2. Text files creating and filling with some text
+
+<details><summary>VIM</summary>
+
+      $ vim test_vim.txt
+
+  > press `i` to switch insert mode on
+
+  ![p7_4_test_vim.png](screenshots/part_7/p7_4_test_vim.png)
+
+  > press `Esc` to switch insert mode off
+  >
+  > input `:wq` to close the file and save the changes
+
+</details>
+
+<details><summary>NANO</summary>
+
+      $ nano test_nano.txt
+    
+  ![p7_5_test_nano.png](screenshots/part_7/p7_5_test_nano.png)
+
+  > press in sequence: `control+X` -> `y` -> `Enter` to close the file and save the changes
+
+</details>
+
+<details><summary>MCEDIT</summary>
+
+      $ mcedit test_mcedit.txt
+    
+  ![p7_6_test_mcedit.png](screenshots/part_7/p7_6_test_mcedit.png)
+
+  > press `F2` -> `Enter` to save the changes
+  >
+  > press `F10` to close the file
+  >
+  > OR press `Esc` -> `y` to close the file and save the changes
+
+</details>
+
+7.3. Text files editing and closing without saving the cheanges
+
+<details><summary>VIM</summary>
+
+      $ vim test_vim.txt
+
+  > press `i` to switch insert mode on
+
+  ![p7_7_vim_no_save.png](screenshots/part_7/p7_7_vim_no_save.png)
+
+  > press `Esc` to switch insert mode off
+  >
+  > input `:q!` to close the file without saving the changes
+
+</details>
+
+<details><summary>NANO</summary>
+
+      $ nano test_nano.txt
+    
+  ![p7_8_nano_no_save.png](screenshots/part_7/p7_8_nano_no_save.png)
+
+  > press in sequence: `control+X` -> `n` to close the file without saving the changes
+
+</details>
+
+<details><summary>MCEDIT</summary>
+
+      $ mcedit test_mcedit.txt
+    
+  ![p7_9_mcedit_no_save.png](screenshots/part_7/p7_9_mcedit_no_save.png)
+
+  > press `F10` -> `n` to close the file without saving the changes
+  >
+  > OR press `Esc` -> `n` to close the file without saving the changes
+
+</details>
+
+7.4. Text searching and text replacing in the files
+
+<details><summary>VIM</summary>
+
+  ![p7_10_vim_search.png](screenshots/part_7/p7_10_vim_search.png)
+
+    :s/21 /21_
+
+  ![p7_11_vim_replace.png](screenshots/part_7/p7_11_vim_replace.png)
+
+</details>
+
+<details><summary>NANO</summary>
+
+  > press `control+W` and input pattern to search
+
+  ![p7_12_nano_search.png](screenshots/part_7/p7_12_nano_search.png)
+
+  > press `control+\` -> input pattern -> `Enter` -> input new text -> `Enter`
+  >
+  > press:
+  >> `y` to replace current instance
+  >>
+  >> `n` to miss current instance
+  >>
+  >> `a` to replace all matches
+  >>
+  >> `control+C` to cancel the replace mode
+
+  ![p7_13_nano_replace.png](screenshots/part_7/p7_13_nano_replace.png)
+
+</details>
+
+<details><summary>MCEDIT</summary>
+
+  > press `F7` to switch search mode on
+  >
+  > input pattern
+  >
+  > set searching mode
+  >
+  > press:
+  >> `o` to find first match
+  >>
+  >> `f` to find all matches
+  >>
+  >> `c` or `Esc` to cancel the search mode
+
+  ![p7_14_mcedit_search.png](screenshots/part_7/p7_14_mcedit_search.png)
+
+  > press `F4` to switch replace mode on
+  >
+  > input search string
+  >
+  > input replacement string
+  >
+  > select replacement settings
+  >
+  > press:
+  >> `o` to replace first match
+  >>
+  >> `c` or `Esc` to cancel the replace mode
+
+  ![p7_15_mcedit_replace.png](screenshots/part_7/p7_15_mcedit_replace.png)
+
+</details>
