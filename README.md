@@ -910,3 +910,39 @@ Linux system installation and updates. Administration basics.
     $ sudo du -h /var/log/*
 
 ![p12_3_du_varlog.png](screenshots/part_12/p12_3_du_varlog.png)
+
+
+## Part 13. Installing and using the **ncdu** utility
+
+**== Task ==**
+
+##### Install the ncdu utility.
+##### Output the size of the /home, /var, /var/log folders.
+- The size should be approximately the same as in [Part 12](#part-12-using-the-du-utility).
+
+- Add screenshots of the used commands to the report.
+
+**== Solution ==**
+
+    $ sudo apt install ncdu
+    $ ncdu /home
+    $ ncdu /var
+    $ ncdu /var/log
+
+<details><summary>/home</summary>
+
+![p13_1_ncdu_home.png](screenshots/part_13/p13_1_ncdu_home.png)
+
+</details>
+
+<details><summary>/var</summary>
+
+![p13_2_ncdu_var.png](screenshots/part_13/p13_2_ncdu_var.png)
+
+</details>
+
+<details><summary>/var/log</summary>
+
+![p13_3_ncdu_varlog.png](screenshots/part_13/p13_3_ncdu_varlog.png)
+
+</details>
