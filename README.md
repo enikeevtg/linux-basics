@@ -39,7 +39,7 @@ Linux system installation and updates. Administration basics.
   `cat /etc/passwd`
 - Add a screenshot of the command output.
 
-**== Result ==**
+**== Solution ==**
 
 2.1. Command to create user
 
@@ -65,8 +65,6 @@ Linux system installation and updates. Administration basics.
 
   ![p2_4_group_checking.png](screenshots/part_2/p2_4_group_checking.png)
 
-  > sudo - Substitute User and do
-
 ## Part 3. Setting up the OS network
 
 **== Task ==**
@@ -85,7 +83,7 @@ Linux system installation and updates. Administration basics.
 - Describe in the report what you have done to complete all seven points (you can do it in text or with screenshots).
 - Successfully ping 1.1.1.1 and ya.ru remote hosts and add a screenshot of the output command to the report. There should be "0% packet loss" phrase in command output.
 
-**== Result ==**
+**== Solution ==**
 
 3.1. Setting the machine name as user-1
 
@@ -199,7 +197,7 @@ Linux system installation and updates. Administration basics.
 - After updating the system packages, if you enter the update command again, a message should appear saying there are no updates.
 - Add a screenshot of this message to the report.
 
-**== Result ==**
+**== Solution ==**
 
 * Sync the package index files from their sources via Internet
 
@@ -218,3 +216,48 @@ Linux system installation and updates. Administration basics.
       $ sudo apt update
 
   ![p4_3_all_packeges_are_up_to_date.png](screenshots/part_4/p4_3_all_packeges_are_up_to_date.png)
+
+
+## Part 5. Using the **sudo** command
+
+**== Task ==**
+
+##### Allow user created in [Part 2](#part-2-creating-a-user) to execute sudo command.
+- In the report explain the *true* purpose of sudo command (don’t write about the fact that this word is "magic" one).
+- Change the OS hostname via the user created in [Part 2](#part-2-creating-a-user) (using sudo).
+- Add screenshot with changed hostname to the report.
+
+**== Solution ==**
+
+5.1.
+
+  > sudo - Substitute User and do - 
+
+5.2. Adding task2_user to sudo group
+
+* Adding task2_user to sudo group
+
+      $ sudo ussermod -aG sudo task2_user
+
+  ![p5_1_usermod_sudo.png](screenshots/part_5/p5_1_usermod_sudo.png)
+
+* Checking task2_user is in sudo group
+
+      $ cat /etc/group | grep sudo
+  
+  ![p5_2_sudo_group.png](screenshots/part_5/p5_2_sudo_group.png)
+
+5.3. Change the OS hostname via the task2_user
+
+* Switching to task2_user
+
+      $ su - task2_user
+
+  ![p5_3_switch_to_task2_user.png](screenshots/part_5/p5_3_switch_to_task2_user.png)
+
+* Changing OS hostname by task2_user
+
+      $ sudo hostname task5_host
+      $ hostname
+  
+  ![p5_4_1_new_hostname.png](screenshots/part_5/p5_4_1_new_hostname.png)
