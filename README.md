@@ -583,7 +583,7 @@ So oneline command to create a new user is:
   >
   > Write information for all processes, except session leaders.
   >
-  > `-e`
+  > + `-e`
   >
   > Write information for all processes. (Equivalent to -A.)
   >
@@ -640,7 +640,7 @@ So oneline command to create a new user is:
   >
   > + `-a` - выбрать все процессы, кроме фоновых;
   >
-  > `-d`, `(g)` - выбрать все процессы, даже фоновые, кроме процессов сессий;
+  > + `-d`, `(g)` - выбрать все процессы, даже фоновые, кроме процессов сессий;
   >
   > + `-N` - выбрать все процессы кроме указанных;
   >
