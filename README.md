@@ -496,7 +496,7 @@ Linux system installation and updates. Administration basics.
 
      $ sudo apt install openssh-server
 
-  ![p8_openssh_install.png](screenshots/part_8/p8_openssh_install.png)
+  ![p8_1_openssh_install.png](screenshots/part_8/p8_1_openssh_install.png)
 
 8.2. An auto-start of the service adding
 
@@ -516,7 +516,7 @@ Linux system installation and updates. Administration basics.
 
       $ reboot
       ...
-      $ sudo apt install openssh-server
+      $ systemctl status ssh
   
   ![p8_4_ssh_status_after_reboot.png](screenshots/part_8/p8_4_ssh_status_after_reboot.png)
 
@@ -698,3 +698,163 @@ Linux system installation and updates. Administration basics.
   > - `Lastly, when seen in the output of the netstat command (which is what you asked for), it means that a given socket is listening on all the available IP addresses the computer has; when a computer has more than one IP address, a socket can be bound only to a specific address and port pair, or to a port and all addresses; if you see an IP address there, it means that socket is listening only on that port and that specific address; if you see 0.0.0.0, it means it's listening on that port on all addresses of the machine, including the loopback one (127.0.0.1).`
 
 </details>
+
+## Part 9. Installing and using the **top**, **htop** utilities
+
+**== Task ==**
+
+##### Install and run the top and htop utilities.
+- From the output of the top command determine and write in the report:
+    - uptime
+    - number of authorised users
+    - total system load
+    - total number of processes
+    - cpu load
+    - memory load
+    - pid of the process with the highest memory usage
+    - pid of the process taking the most CPU time
+- Add a screenshot of the htop command output to the report:
+    - sorted by PID, PERCENT_CPU, PERCENT_MEM, TIME
+    - filtered for sshd process
+    - with the syslog process found by searching
+    - with hostname, clock and uptime output added
+
+**== Solution ==**
+
+9.1. htop utilities installing
+
+    $ sudo apt install htop
+  
+9.2. Output of the top command
+
+  > - uptime: `2 min`
+  >
+  > - number of authorised users: `1 user`
+  > 
+  > - total system load: `load average: 0.08, 0.06, 0.02`
+  >
+  > - total number of processes: `106 total`
+  >
+  > - cpu load: `0.0 us, 0.2 sy, 0.0 ni`
+  >
+  > - memory load: `163.9 used`
+  >
+  > - pid of the process with the highest memory usage: `632`
+  >
+  > - pid of the process taking the most CPU time: `632`
+
+  ![p9_0_top.png](screenshots/part_9/p9_0_top.png)
+
+9.3. htop using
+
+<details><summary>Sorted by PID</summary>
+
+  ![p9_1_sort_pid.png](screenshots/part_9/p9_1_sort_pid.png)
+
+</details>
+
+<details><summary>Sorted by PERCENT_CPU</summary>
+
+  ![p9_2_sort_cpu.png](screenshots/part_9/p9_2_sort_cpu.png)
+
+</details>
+
+<details><summary>Sorted by PERCENT_MEM</summary>
+
+  ![p9_3_sort_mem.png](screenshots/part_9/p9_3_sort_mem.png)
+
+</details>
+
+<details><summary>Sorted by TIME</summary>
+
+  ![p9_4_sort_time.png](screenshots/part_9/p9_4_sort_time.png)
+
+</details>
+
+<details><summary>Filtered for sshd process</summary>
+
+  ![p9_5_filter_sshd.png](screenshots/part_9/p9_5_filter_sshd.png)
+
+</details>
+
+<details><summary>syslog searching</summary>
+
+  ![p9_6_search_syslog.png](screenshots/part_9/p9_6_search_syslog.png)
+
+</details>
+
+<details><summary>htop setup</summary>
+
+  ![p9_7_htop_setup.png](screenshots/part_9/p9_7_htop_setup.png)
+
+</details>
+
+## Part 10. Using the **fdisk** utility
+
+**== Task ==**
+
+##### Run the fdisk -l command.
+- In the report write the name of the hard disk, its capacity and number of sectors, and also the swap size.
+
+**== Solution ==**
+
+    $ sudo fdisk -l
+    $ free -h || swapon -s || swapon --show
+
+  > - name of the hard disk: `VBOX HARDDISK`
+  >
+  > - hard disk capacity: `50 GiB`
+  >
+  > - hard disk number of sectors: `104 857 600 sectors`
+  >
+  > - swap size: `2.0 Gi`
+
+  ![p10_1_fdisk_output.png](screenshots/part_10/p10_1_fdisk_output.png)
+
+## Part 11. Using the **df** utility
+
+**== Task ==**
+
+##### Run the df command.
+- In the report write for the root partition (/):
+    - partition size
+    - space used
+    - space free
+    - percentage used
+- Determine and write the measurement unit in the report.
+
+##### Run the df -Th command.
+- In the report write for the root partition (/):
+    - partition size
+    - space used
+    - space free
+    - percentage used
+- Determine and write the file system type for the partition in the report.
+
+**== Solution ==**
+
+11.1. The df command for the root partition running
+
+    $ df /
+
+  > - partition size: `51287520`
+  > - space used: `4916008`
+  > - space free: `43733844`
+  > - percentage used: `11%`
+  > - measurement unit: `KiB` (`$ df /` equal to `$ df --block-size K /`)
+  >
+  >   `1 KiB = 2^10 bytes = 1024 bytes`
+
+  ![p11_1_df.png](screenshots/part_11/p11_1_df.png)
+
+11.2. The df command for the root partition running
+
+    $ df -Th /
+
+  > - partition size: `49G`
+  > - space used: `4.7G`
+  > - space free: `42G`
+  > - percentage used: `11%`
+  > - file system type: `ext4`
+
+  ![p11_2_df_th.png](screenshots/part_11/p11_2_df_th.png)
