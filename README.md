@@ -132,11 +132,23 @@ So oneline command to create a new user is:
 
   ![p3_5_network_interfaces.png](screenshots/part_3/p3_5_network_interfaces.png)
 
+<details><summary>loopback</summary>
+
   > [Virtual loopback interface](https://en.wikipedia.org/wiki/Loopback)
   > 
   > Implementations of the Internet protocol suite include a virtual network interface through which network applications can communicate when executing on the same machine. It is implemented entirely within the operating system's networking software and passes no packets to any network interface controller. Any traffic that a computer program sends to a loopback IP address is simply and immediately passed back up the network software stack as if it had been received from another device. Unix-like systems usually name this loopback interface **lo** or **lo0**.
   >
   > [lo (loopback device)](https://ru.hexlet.io/courses/linux-administration/lessons/interfaces/theory_unit) – виртуальный интерфейс, присутствующий по умолчанию в любом Linux. Он используется для отладки сетевых программ и запуска серверных приложений на локальной машине. С этим интерфейсом всегда связан адрес 127.0.0.1. У него есть dns-имя – *localhost*. Посмотреть привязку можно в файле `/etc/hosts`.
+  >
+  > [localhost](https://ru.m.wikipedia.org/wiki/Localhost) (так называемый, «местный» от англ. local, или «локальный хост», по смыслу — этот компьютер) — в компьютерных сетях, стандартное, официально зарезервированное доменное имя для частных IP-адресов (в диапазоне 127.0.0.1 — 127.255.255.254, RFC 2606). Для сети, состоящей только из одного компьютера, как правило, используется всего один адрес — 127.0.0.1, который устанавливается на специальный сетевой интерфейс «внутренней петли» (англ. loopback) в сетевом протоколе TCP/IP. В Unix-подобных системах данный интерфейс обычно именуется «loN», где N — число, либо просто «lo». При установке соединений в этой вырожденной «сети» присутствует только один компьютер, при этом сетевые протоколы выполняют функции протоколов межпроцессного взаимодействия.
+  >
+  > Использование адреса 127.0.0.1 позволяет устанавливать соединение и передавать информацию для программ-серверов, работающих на том же компьютере, что и программа-клиент, независимо от конфигурации аппаратных сетевых средств компьютера (не требуется сетевая карта, модем, и прочее коммуникационное оборудование, интерфейс реализуется при помощи драйвера псевдоустройства в ядре операционной системы). Таким образом, для работы клиент-серверных приложений на одном компьютере не требуется изобретать дополнительные протоколы и дописывать программные модули. Примером может быть запущенный на компьютере веб-сервер и обращение к нему с этого компьютера для веб-разработки на этом компьютере без необходимости выкладывать веб-программу в сеть интернет, пока её разработка не закончена.
+  >
+  > Традиционно адресу 127.0.0.1 однозначно сопоставляется имя хоста «.localhost» и/или «localhost.localdomain», то есть, по умолчанию, присутствует перенаправление на себя. Есть также рекомендации к использованию специальных доменных имен, таких как .test, .example и .invalid.(RFC 2606), но ни еще не вошли в практику и традиционно еще по умолчанию не настроены.
+  >
+  > В IPv6 локальному хосту сопоставляется IP-адрес ::1/128 (0:0:0:0:0:0:0:1).
+
+</details>
 
 3.4. Getting the ip address of the device from the DHCP server
 
