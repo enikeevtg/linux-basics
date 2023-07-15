@@ -19,6 +19,7 @@ Linux system installation and updates. Administration basics.
 13. [Installing and using the ncdu utility](#part-13-installing-and-using-the-ncdu-utility)    
 14. [Working with system logs](#part-14-working-with-system-logs)     
 15. [Using the CRON job scheduler](#part-15-using-the-cron-job-scheduler)
+16. [My experiments](#part-16-my-experiments)
 
 
 ## Part 1. Installation of the OS
@@ -1134,3 +1135,87 @@ after task adding
     $ sudo crontab -l
 
   ![p15_5_crontab_removing.png](screenshots/part_15/p15_5_crontab_removing.png)
+
+## Part 16. My experiments
+
+16.1 User password changing
+
+    $ sudo passwd
+
+  or 
+
+    $ sudo passwd <username>
+
+  ![p16_1_passwd.png](screenshots/part_16_my/p16_1_passwd.png)
+
+
+16.2 Release updating
+
+Шаг 1. Обновление пакетов
+
+Для того чтобы минимизировать отличия состояния пакетов системы с той, которую разработчики готовили до обновления, следует обновить её до самого последнего состояния. Для этого сначала обновляем списки пакетов:
+
+    $ sudo apt update
+
+Затем обновляем полностью весь дистрибутив с разрешением удаления конфликтующих пакетов:
+
+    $ sudo apt dist-upgrade
+
+Далее можно удалить пакеты, которые в системе больше не нужны:
+
+    $ sudo apt autoremove
+
+Возможно после обновления нужно будет перезагрузить систему:
+
+    $ sudo reboot
+
+Шаг 2. Запуск обновления
+
+Для запуска обновления в графическом интерфейсе надо выполнить команду:
+
+    $ sudo do-release-upgrade
+
+Проверка релиза
+
+    $ lsb_release -d
+
+  ![p16_2_relaese_check.png](screenshots/part_16_my/p16_2_relaese_check.png)
+
+
+16.3 Переключение на графический интерфейс
+
+Чтобы узнать текущее состояние рига (включена или нет графическая оболочка X-сервер) используется команда:
+
+    $ sudo systemctl get-default
+
+  ![p16_3_get-default.png](screenshots/part_16_my/p16_3_get-default.png)
+
+
+* multi-user.target обеспечивает запуск системы на уровне 3, которому соответствует работа в многопользовательском режиме, без графики, с помощью консоли и/или через сеть
+
+* graphical.target обеспечивает запуск системы на уровне 5, которому соответствует работа в многопользовательском режиме с графикой
+
+Включение графического интерфейса
+
+    $ sudo systemctl set-default graphical.target
+
+  ![p16_4_GUI_switch_on.png](screenshots/part_16_my/p16_4_GUI_switch_on.png)
+
+
+<details><summary>GUI</summary>
+
+  ![p16_5_GUI_1.png](screenshots/part_16_my/p16_5_GUI_1.png)
+
+  ![p16_6_GUI_2.png](screenshots/part_16_my/p16_6_GUI_2.png)
+
+</details>
+
+Отключение графического интерфейса
+
+    $ sudo systemctl set-default multi-user.target
+
+  ![p16_7_GUI_switch_off.png](screenshots/part_16_my/p16_7_GUI_switch_off.png)
+
+
+Изменение вступает в силу сразу после перезагрузки системы
+
