@@ -19,7 +19,10 @@ Linux system installation and updates. Administration basics.
 13. [Installing and using the ncdu utility](#part-13-installing-and-using-the-ncdu-utility)    
 14. [Working with system logs](#part-14-working-with-system-logs)     
 15. [Using the CRON job scheduler](#part-15-using-the-cron-job-scheduler)
-16. [My experiments](#part-16-my-experiments)
+16. [User password changing](#part-16-user-password-changing)
+17. [Release updating](#part-17-release-updating)
+18. [Переключение на графический интерфейс](#part-18-переключение-на-графический-интерфейс)
+19. [Проброс порта ssh к ubuntu-server в VirtalBox](#part-19-проброс-порта-ssh-к-ubuntu-server-в-virtalbox)
 
 
 ## Part 1. Installation of the OS
@@ -145,7 +148,7 @@ So oneline command to create a new user is:
   >
   > Использование адреса 127.0.0.1 позволяет устанавливать соединение и передавать информацию для программ-серверов, работающих на том же компьютере, что и программа-клиент, независимо от конфигурации аппаратных сетевых средств компьютера (не требуется сетевая карта, модем, и прочее коммуникационное оборудование, интерфейс реализуется при помощи драйвера псевдоустройства в ядре операционной системы). Таким образом, для работы клиент-серверных приложений на одном компьютере не требуется изобретать дополнительные протоколы и дописывать программные модули. Примером может быть запущенный на компьютере веб-сервер и обращение к нему с этого компьютера для веб-разработки на этом компьютере без необходимости выкладывать веб-программу в сеть интернет, пока её разработка не закончена.
   >
-  > Традиционно адресу 127.0.0.1 однозначно сопоставляется имя хоста «.localhost» и/или «localhost.localdomain», то есть, по умолчанию, присутствует перенаправление на себя. Есть также рекомендации к использованию специальных доменных имен, таких как .test, .example и .invalid.(RFC 2606), но ни еще не вошли в практику и традиционно еще по умолчанию не настроены.
+  > Традиционно адресу 127.0.0.1 однозначно сопоставляется имя хоста «.localhost» и/или «localhost.localdomain», то есть, по умолчанию, присутствует перенаправление на себя. Есть также рекомендации к использованию специальных доменных имен, таких как .test, .example и .invalid.(RFC 2606), но они еще не вошли в практику и традиционно еще по умолчанию не настроены.
   >
   > В IPv6 локальному хосту сопоставляется IP-адрес ::1/128 (0:0:0:0:0:0:0:1).
 
@@ -721,7 +724,7 @@ So oneline command to create a new user is:
   >
   > + `-a`, `--all`
   >
-  > Show both listening and non-listening (for TCP this means established connections) sockets. With the --interfaces o>ption, show interfaces that are not marked
+  > Show both listening and non-listening (for TCP this means established connections) sockets. With the --interfaces option, show interfaces that are not marked
   >
   > + `--numeric`, `-n`
   >
@@ -865,7 +868,11 @@ So oneline command to create a new user is:
 **== Solution ==**
 
     $ sudo fdisk -l
-    $ free -h || swapon -s || swapon --show
+    $ free -h
+    or
+    $ swapon -s
+    or
+    $ swapon --show
 
   > - name of the hard disk: `VBOX HARDDISK`
   >
@@ -1136,9 +1143,7 @@ after task adding
 
   ![p15_5_crontab_removing.png](screenshots/part_15/p15_5_crontab_removing.png)
 
-## Part 16. My experiments
-
-16.1 User password changing
+## Part 16. User password changing
 
     $ sudo passwd
 
@@ -1146,10 +1151,10 @@ after task adding
 
     $ sudo passwd <username>
 
-  ![p16_1_passwd.png](screenshots/part_16_my/p16_1_passwd.png)
+  ![p16_1_passwd.png](screenshots/part_16/p16_1_passwd.png)
 
 
-16.2 Release updating
+## Part 17. Release updating
 
 Шаг 1. Обновление пакетов
 
@@ -1179,16 +1184,18 @@ after task adding
 
     $ lsb_release -d
 
-  ![p16_2_relaese_check.png](screenshots/part_16_my/p16_2_relaese_check.png)
+  ![p17_1_relaese_check.png](screenshots/part_17/p17_1_relaese_check.png)
 
 
-16.3 Переключение на графический интерфейс
+## Part 18. Переключение на графический интерфейс
+
+[Источник](https://www.cryptoprofi.info/?p=4949)
 
 Чтобы узнать текущее состояние рига (включена или нет графическая оболочка X-сервер) используется команда:
 
     $ sudo systemctl get-default
 
-  ![p16_3_get-default.png](screenshots/part_16_my/p16_3_get-default.png)
+  ![p18_1_get-default.png](screenshots/part_18/p18_1_get-default.png)
 
 
 * multi-user.target обеспечивает запуск системы на уровне 3, которому соответствует работа в многопользовательском режиме, без графики, с помощью консоли и/или через сеть
@@ -1199,14 +1206,14 @@ after task adding
 
     $ sudo systemctl set-default graphical.target
 
-  ![p16_4_GUI_switch_on.png](screenshots/part_16_my/p16_4_GUI_switch_on.png)
+  ![p18_2_GUI_switch_on.png](screenshots/part_18/p18_2_GUI_switch_on.png)
 
 
 <details><summary>GUI</summary>
 
-  ![p16_5_GUI_1.png](screenshots/part_16_my/p16_5_GUI_1.png)
+  ![p18_3_GUI_1.png](screenshots/part_18/p18_3_GUI_1.png)
 
-  ![p16_6_GUI_2.png](screenshots/part_16_my/p16_6_GUI_2.png)
+  ![p18_4_GUI_2.png](screenshots/part_18/p18_4_GUI_2.png)
 
 </details>
 
@@ -1214,8 +1221,109 @@ after task adding
 
     $ sudo systemctl set-default multi-user.target
 
-  ![p16_7_GUI_switch_off.png](screenshots/part_16_my/p16_7_GUI_switch_off.png)
+  ![p18_5_GUI_switch_off.png](screenshots/part_18/p18_5_GUI_switch_off.png)
 
 
 Изменение вступает в силу сразу после перезагрузки системы
 
+## Part 19. Проброс порта ssh к ubuntu-server в VirtalBox
+
+[Источник](https://losst.pro/probros-portov-virtualbox)
+
+<details><summary>При установке ubuntu-server необходимо выбрать установку OpenSSH server</summary>
+
+  ![p19_1_install_openssh.png](screenshots/part_19/p19_1_install_openssh.png)
+
+</details>
+
+<details><summary>Если при установке этого не было сделано, то устанавливаем OpenSSH вручную</summary>
+
+    $ sudo apt install openssh-server
+
+  ![p19_2_install_openssh.png](screenshots/part_19/p19_2_install_openssh.png)
+
+</details>
+
+<details><summary>Пробрасываем порт ssh в настройках машины в VirtualBox</summary>
+
+  ![p19_3_network.png](screenshots/part_19/p19_3_network.png)
+  ![p19_4_port_settings.png](screenshots/part_19/p19_4_port_settings.png)
+
+Из [источника](https://losst.pro/probros-portov-virtualbox): 
+> Имя - любое имя, по которому вы сможете понять с чем имеете дело;
+>
+> Протокол - протокол, по которому работает сервис, например, tcp;
+>
+> Адрес хоста - адрес на основной машине, подключения к которому будут направляться на виртуальную машину, можно написать 127.0.0.1 или ip в локальной сети;
+>
+> Порт хоста - порт, подключения к которому нужно перенаправлять на гостя;
+>
+> Адрес гостя - на который нужно направлять подключения, оставьте пустым;
+>
+> Порт гостя - порт, на который будут перенаправлены подключения с этого порта.
+
+> Протокол:
+>
+> TCP по умолчанию
+>
+> Адрес хоста:
+>
+> 127.0.0.1 (соответствует [localhost или loopback](#part-3-setting-up-the-os-network))
+>
+> Порт хоста:
+>
+> Порты ниже 4000 вводить не рекомендуется, так как там расположены системные порты, поэтому 5022, но можно любой выше 4000.
+>
+> Порт гостя:
+>
+> 22 соответствует порту ssh (можно проверить командой:
+      
+      cat /etc/services | less)
+
+  ![p19_5_services.png](screenshots/part_19/p19_5_services.png)
+
+</details>
+
+<details><summary>Связываем терминал с ubuntu-server по ssh</summary>
+
+    $ ssh <machine_name>@127.0.0.1 -p 5022
+    or
+    $ ssh <machine_name>@localhost -p 5022
+
+  ![p19_6_terminal_link.png](screenshots/part_19/p19_6_terminal_link.png)
+
+</details>
+
+<details><summary>Связываем VSCode с ubuntu-server по ssh</summary>
+
++ Настраиваем подключение
+
+  ![p19_7_vscode_1.png](screenshots/part_19/p19_7_vscode_1.png)
+  ![p19_8_vscode_2.png](screenshots/part_19/p19_8_vscode_2.png)
+
+      ssh <machine_name>@127.0.0.1 -p 5022
+      or
+      ssh <machine_name>@localhost -p 5022
+
+  ![p19_9_vscode_3.png](screenshots/part_19/p19_9_vscode_3.png)
+  ![p19_10_vscode_4.png](screenshots/part_19/p19_10_vscode_4.png)
+  ![p19_11_vscode_5.png](screenshots/part_19/p19_11_vscode_5.png)
+
++ Подключение настроено. Теперь можно подключиться к серверу:
+
+  ![p19_7_vscode_1.png](screenshots/part_19/p19_7_vscode_1.png)
+  ![p19_12_vscode_6.png](screenshots/part_19/p19_12_vscode_6.png)
+
+  или
+
+  ![p19_13_vscode_7.png](screenshots/part_19/p19_13_vscode_7.png)
+
++ Вводим пароль
+
+  ![p19_14_vscode_8.png](screenshots/part_19/p19_14_vscode_8.png)
+
++ Работаем
+
+  ![p19_15_vscode_9.png](screenshots/part_19/p19_15_vscode_9.png)
+
+</details>
