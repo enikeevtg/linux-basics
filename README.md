@@ -1296,34 +1296,41 @@ after task adding
 
 <details><summary>Связываем VSCode с ubuntu-server по ssh</summary>
 
-+ Настраиваем подключение
++ Устанавливаем расширение Remote - SSH
 
   ![p19_7_vscode_1.png](screenshots/part_19/p19_7_vscode_1.png)
+
++ Настраиваем конфигурацию подключения
+
   ![p19_8_vscode_2.png](screenshots/part_19/p19_8_vscode_2.png)
+  ![p19_9_vscode_3.png](screenshots/part_19/p19_9_vscode_3.png)
 
       ssh <machine_name>@127.0.0.1 -p 5022
       or
       ssh <machine_name>@localhost -p 5022
 
-  ![p19_9_vscode_3.png](screenshots/part_19/p19_9_vscode_3.png)
   ![p19_10_vscode_4.png](screenshots/part_19/p19_10_vscode_4.png)
+
+      Enter
+
   ![p19_11_vscode_5.png](screenshots/part_19/p19_11_vscode_5.png)
+  ![p19_12_vscode_6.png](screenshots/part_19/p19_12_vscode_6.png)
 
 + Подключение настроено. Теперь можно подключиться к серверу:
 
-  ![p19_7_vscode_1.png](screenshots/part_19/p19_7_vscode_1.png)
-  ![p19_12_vscode_6.png](screenshots/part_19/p19_12_vscode_6.png)
+  ![p19_8_vscode_2.png](screenshots/part_19/p19_8_vscode_2.png)
+  ![p19_13_vscode_7.png](screenshots/part_19/p19_13_vscode_7.png)
 
   или
 
-  ![p19_13_vscode_7.png](screenshots/part_19/p19_13_vscode_7.png)
+  ![p19_14_vscode_8.png](screenshots/part_19/p19_14_vscode_8.png)
 
 + Вводим пароль
 
-  ![p19_14_vscode_8.png](screenshots/part_19/p19_14_vscode_8.png)
+  ![p19_15_vscode_9.png](screenshots/part_19/p19_15_vscode_9.png)
 
 + Работаем
 
-  ![p19_15_vscode_9.png](screenshots/part_19/p19_15_vscode_9.png)
+  ![p19_16_vscode_10.png](screenshots/part_19/p19_16_vscode_10.png)
 
 </details>
