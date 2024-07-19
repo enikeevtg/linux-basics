@@ -27,7 +27,41 @@ Linux system installation and updates. Administration basics.
 
 ## Part 1. Installation of the OS
 
-1.1. Ubuntu version checking
+1.1 Installation of the OS (Ubuntu Server 20.04.6 LTS)
+
+<details><summary>Installation steps</summary>
+
+  ![p1_0_get_ubuntu_server_20_04_6_lts.png](screenshots/part_1/p1_0_get_ubuntu_server_20_04_6_lts.png)
+  ![p1_1_vbox_1.png](screenshots/part_1/p1_1_vbox_1.png)
+  ![p1_1_vbox_2.png](screenshots/part_1/p1_1_vbox_2.png)
+  ![p1_1_vbox_3.png](screenshots/part_1/p1_1_vbox_3.png)
+  ![p1_1_vbox_4.png](screenshots/part_1/p1_1_vbox_4.png)
+  ![p1_1_vbox_5.png](screenshots/part_1/p1_1_vbox_5.png)
+  ![p1_1_vbox_6.png](screenshots/part_1/p1_1_vbox_6.png)
+  ![p1_1_vbox_7.png](screenshots/part_1/p1_1_vbox_7.png)
+  ![p1_1_vbox_8.png](screenshots/part_1/p1_1_vbox_8.png)
+  ![p1_1_vbox_9_result.png](screenshots/part_1/p1_1_vbox_9_result.png)
+  ![p1_2_setup_1.png](screenshots/part_1/p1_2_setup_1.png)
+  ![p1_2_setup_2.png](screenshots/part_1/p1_2_setup_2.png)
+  ![p1_2_setup_3.png](screenshots/part_1/p1_2_setup_3.png)
+  ![p1_2_setup_4.png](screenshots/part_1/p1_2_setup_4.png)
+  ![p1_2_setup_5.png](screenshots/part_1/p1_2_setup_5.png)
+  ![p1_2_setup_6.png](screenshots/part_1/p1_2_setup_6.png)
+  ![p1_2_setup_7.png](screenshots/part_1/p1_2_setup_7.png)
+  ![p1_2_setup_8.png](screenshots/part_1/p1_2_setup_8.png)
+  ![p1_2_setup_9.png](screenshots/part_1/p1_2_setup_9.png)
+  ![p1_2_setup_10.png](screenshots/part_1/p1_2_setup_10.png)
+  ![p1_2_setup_11.png](screenshots/part_1/p1_2_setup_11.png)
+  ![p1_2_setup_12.png](screenshots/part_1/p1_2_setup_12.png)
+  ![p1_2_setup_13.png](screenshots/part_1/p1_2_setup_13.png)
+  ![p1_2_setup_14.png](screenshots/part_1/p1_2_setup_14.png)
+  ![p1_2_setup_15.png](screenshots/part_1/p1_2_setup_15.png)
+  ![p1_2_setup_16.png](screenshots/part_1/p1_2_setup_16.png)
+  ![p1_2_setup_17_result.png](screenshots/part_1/p1_2_setup_17_result.png)
+
+</details>
+
+1.2. Ubuntu version checking
 
     cat /etc/issue
 
